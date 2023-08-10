@@ -1,11 +1,16 @@
+// Formulario
 var formulario = document.getElementById("form")
-var enviarConsulta =document.getElementById("enviarConsulta")
 
-  
-  
+// Botón enviar
+var enviarConsulta = document.getElementById("enviarConsulta")
 
+// Botón eliminar
+var botonBorrar = document.createElement("button")
+botonBorrar.textContent = "Eliminar invitado"
+botonBorrar.id = "boton-borrar"
 
-  enviarConsulta.addEventListener("click", function (event) {
+// Función de envío de consulta
+enviarConsulta.addEventListener("click", function (event) {
 
   event.preventDefault();
 
@@ -24,33 +29,25 @@ var enviarConsulta =document.getElementById("enviarConsulta")
 
   if (nombre.length === 0) {
     n.classList.add("error");
-  }else{
+  } else {
     n.classList.remove("error");
   }
 
   if (edad < 18 || edad > 120) {
     e.classList.add("error");
-  }else{
+  } else {
     e.classList.remove("error");
   }
 
   if (nombre.length > 0 && (edad > 18 && edad < 120)) {
     console.log("pasa");
     agregarInvitado(nombre, edad, nacionalidad);
-  }else{
+  } else {
     console.log("No paso");
   }
 });
 
-var botonBorrar = document.createElement("button")
-botonBorrar.textContent = "Eliminar invitado"
-botonBorrar.id = "boton-borrar"
-
-var corteLinea = document.createElement("br")
-document.body.appendChild(corteLinea)
-
-// document.body.appendChild(botonBorrar);
-
+// Función de agregar invitado
 function agregarInvitado(nombre, edad, nacionalidad) {
 
   if (nacionalidad === "ar") {
@@ -72,20 +69,16 @@ function agregarInvitado(nombre, edad, nacionalidad) {
   elementoLista.classList.add("elemento-lista")
   lista.appendChild(elementoLista)
 
-  var spanNombre = document.createElement("span")
-  var espacio = document.createElement("br")
-  elementoLista.appendChild(spanNombre)
-  elementoLista.appendChild(espacio)
 
   function crearElemento(descripcion, valor) {
     var spanNombre = document.createElement("span")
-    var inputNombre = document.createElement("input")
+    var spanDesc = document.createElement("span")
     var espacio = document.createElement("br")
     spanNombre.textContent = descripcion + ": "
-    inputNombre.value = valor
-    
+    spanDesc.textContent = valor
+
     elementoLista.appendChild(spanNombre)
-    elementoLista.appendChild(inputNombre)
+    elementoLista.appendChild(spanDesc)
     elementoLista.appendChild(espacio)
   }
 
